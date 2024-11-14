@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { ChevronDown, X, Zap, Brain, Rocket, Users, Github, Twitter, Linkedin, Bot, BotIcon, CreditCard, AlarmClockPlus } from 'lucide-react'
+import { ChevronDown, X, Zap, Brain, Rocket, Users, Github, Twitter, Linkedin, Bot, BotIcon, CreditCard, AlarmClockPlus, Instagram } from 'lucide-react'
 
 export default function Componente() {
   const [] = useState(false)
@@ -105,16 +105,8 @@ export default function Componente() {
               <h3 className="text-lg font-semibold mb-4">Síguenos</h3>
               <div className="flex justify-center space-x-4">
                 <Link href="#" className="text-gray-400 hover:text-[#00B4D8] transition duration-300">
-                  <Github size={24} />
+                  <Instagram size={24} />
                   <span className="sr-only">GitHub</span>
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-[#00B4D8] transition duration-300">
-                  <Twitter size={24} />
-                  <span className="sr-only">Twitter</span>
-                </Link>
-                <Link href="#" className="text-gray-400 hover:text-[#00B4D8] transition duration-300">
-                  <Linkedin size={24} />
-                  <span className="sr-only">LinkedIn</span>
                 </Link>
               </div>
             </div>
