@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { ChevronDown, X, Zap, Brain, Rocket, Users, Github, Twitter, Linkedin, Bot, BotIcon, CreditCard, AlarmClockPlus, Instagram } from 'lucide-react'
+import { ChevronDown, X, Zap, Brain, Rocket, Users, Github, Twitter, Linkedin, Bot, BotIcon, CreditCard, AlarmClockPlus, Instagram, NotebookPen } from 'lucide-react'
 import { supabase } from './lib/supabaseClient'
 
 export default function Componente() {
@@ -92,9 +92,9 @@ export default function Componente() {
               />
 
               <TarjetaCaracteristica
-                icono={<AlarmClockPlus className="w-12 h-12 text-[#00B4D8]" />}
-                titulo="Vende de forma personalizada 24/7"
-                descripcion="Nuestros agentes de IA trabajan incansablemente para hacer crecer tu negocio"
+                icono={<NotebookPen className="w-12 h-12 text-[#00B4D8]" />}
+                titulo="Gestión centralizada de tu inventario de productos"
+                descripcion="Nuestros agentes de IA te ayudan a gestionar tus productos de forma eficiente para maximizar tus ventas"
               />
 
               <TarjetaCaracteristica
