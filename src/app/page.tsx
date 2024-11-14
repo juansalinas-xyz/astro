@@ -3,9 +3,31 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { ChevronDown, X, Zap, Brain, Rocket, Users, Github, Twitter, Linkedin, Bot, BotIcon, CreditCard, AlarmClockPlus, Instagram } from 'lucide-react'
+import { supabase } from './lib/supabaseClient'
 
 export default function Componente() {
-  const [] = useState(false)
+  
+  const [email, setEmail] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+
+    const { data, error } = await supabase
+      .from('waiting_list')
+      .insert([{ email }])
+
+    if (error) {
+      setError('Hubo un error al registrarte. Por favor, intenta de nuevo.')
+    } else {
+      setSuccess(true)
+    }
+    setLoading(false)
+  }
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -25,23 +47,33 @@ export default function Componente() {
           <p className="text-xl text-black mb-8 max-w-2xl mx-auto">
             Contrata agentes Astro AI para hacer crecer tus ventas y completar tareas de forma automática.
           </p>
-          <form className="max-w-md mx-auto mb-4" onSubmit={(e) => e.preventDefault()}>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                placeholder="Ingresa tu email"
-                className="flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
-                required
-                aria-label="Dirección de correo electrónico"
-              />
-              <button
-                type="submit"
-                className="bg-[#00B4D8] text-white px-6 py-2 rounded-lg hover:bg-[#0096C7] transition duration-300"
-              >
-                Unirse a la Lista de Espera
-              </button>
-            </div>
-          </form>
+
+          {success ? (
+        <p className="text-green-600">¡Gracias por unirte a la lista de espera!</p>
+      ) : (
+        <form className="max-w-md mx-auto mb-4" onSubmit={handleSubmit}>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <input
+              type="email"
+              placeholder="Ingresa tu correo electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
+              required
+              aria-label="Dirección de correo electrónico"
+            />
+            <button
+              type="submit"
+              className="bg-[#00B4D8] text-white px-6 py-2 rounded-lg hover:bg-[#0096C7] transition duration-300"
+              disabled={loading}
+            >
+              {loading ? 'Registrando...' : 'Unirse a la Lista de Espera'}
+            </button>
+          </div>
+          {error && <p className="text-red-600 mt-2">{error}</p>}
+        </form>
+      )}
+
           <p className="text-sm text-gray-500">
             Sé el primero en saber cuando lancemos.
           </p>
@@ -60,15 +92,15 @@ export default function Componente() {
               />
 
               <TarjetaCaracteristica
-                icono={<CreditCard className="w-12 h-12 text-[#00B4D8]" />}
-                titulo="Integración con pasarelas de pagos"
-                descripcion="Nuestros agentes de IA procesan los pagos de sus ventas con la pasarela de pagos que utilices"
-              />
-
-              <TarjetaCaracteristica
                 icono={<AlarmClockPlus className="w-12 h-12 text-[#00B4D8]" />}
                 titulo="Vende de forma personalizada 24/7"
                 descripcion="Nuestros agentes de IA trabajan incansablemente para hacer crecer tu negocio"
+              />
+
+              <TarjetaCaracteristica
+                icono={<CreditCard className="w-12 h-12 text-[#00B4D8]" />}
+                titulo="Integración con pasarelas de pagos"
+                descripcion="Nuestros agentes de IA procesan los pagos de sus ventas con la pasarela de pagos que utilices"
               />
 
               <TarjetaCaracteristica
@@ -78,9 +110,9 @@ export default function Componente() {
               />
 
               <TarjetaCaracteristica
-                icono={<Brain className="w-12 h-12 text-[#00B4D8]" />}
-                titulo="Toma de Decisiones Inteligente"
-                descripcion="Aprovecha los algoritmos avanzados de IA para una toma de decisiones más inteligente y basada en datos en tus procesos de negocio."
+                icono={<AlarmClockPlus className="w-12 h-12 text-[#00B4D8]" />}
+                titulo="Vende de forma personalizada 24/7"
+                descripcion="Nuestros agentes de IA trabajan incansablemente para hacer crecer tu negocio"
               />
 
               <TarjetaCaracteristica
