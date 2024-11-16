@@ -69,9 +69,6 @@ export default function LandingPage() {
           <Link href="#features" className="text-sm font-medium text-gray-600 hover:text-[#00B4D8] transition duration-300">
             Características
           </Link>
-          <Link href="#pricing" className="text-sm font-medium text-gray-600 hover:text-[#00B4D8] transition duration-300">
-            Precios
-          </Link>
           <Link href="#faq" className="text-sm font-medium text-gray-600 hover:text-[#00B4D8] transition duration-300">
             FAQ
           </Link>
